@@ -1,0 +1,4 @@
+Pour commencer mettes tout vaux fond d'écran dans le fichier "back grounds" 
+renommez les tous 1.extention, 2.extention, 3.extention etc.. 
+Extension supporter .jpg et .png 
+Lancer le fichier "backgroudechage.bat"
