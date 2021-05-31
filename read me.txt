@@ -1,0 +1,9 @@
+Pour commencer mettes tout vaux fond d'écran dans le fichier "back grounds" 
+
+renommez les tous 1.extention, 2.extention, 3.extention etc.. 
+
+Extension supporter .jpg, .jpe, .jepg, .png, .ico, .bmp, .tif, .tiff, .gif bien qu'ils ne sont pas animes
+
+Lancer le fichier "backgroudechage.bat"
+
+N'hésitez pas à consulter nos conseil / aide (tapez 3 dans le programme)
