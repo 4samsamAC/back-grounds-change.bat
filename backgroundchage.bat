@@ -1,6 +1,6 @@
 @echo off
 set bauto=%bauto%1
-set version=1.1
+set version=1.2
 set local=%cd%
 :start
 if exist C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes (
@@ -119,17 +119,18 @@ goto start
 
 
 :ht
-call :GR
-copy "%r2%.%ex%" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\"
-copy "%r2%.%ex%" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\CachedFiles\" 
-del C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\TranscodedWallpaper  
-ren "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\%r2%.%ex%" "TranscodedWallpaper"
-del C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\CachedFiles\CachedImage_%RW%_%RH%_POS4.*
-ren "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Themes\CachedFiles\%r2%.%ex%" "CachedImage_%RW%_%RH%_POS4.jpg"
+echo dim shell>"%local%\tempvbs.vbs"
+echo Set shell = WScript.CreateObject("WScript.Shell")>>"%local%\tempvbs.vbs"
+echo wallpaper = "%local%\%bgf%\%r2%.%ex%">>"%local%\tempvbs.vbs"
+echo shell.RegWrite "HKCU\Control Panel\Desktop\Wallpaper", wallpaper>>"%local%\tempvbs.vbs"
+echo shell.Run "%windir%\System32\RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters", 1, True>>"%local%\tempvbs.vbs"
+"C:\windows\system32\Cscript.exe" "%local%\tempvbs.vbs"
+del /f "%local%\tempvbs.vbs"
 if %bauto% == true1 (
     exit /b
 )
-goto timer5
+call :timer5
+goto start
 
 
 :3
@@ -287,7 +288,7 @@ cls
 echo la prochaine utilisation dans sera dans : 1
 TIMEOUT /T 1 /NOBREAK >nul
 cls
-goto start
+exit /b
 
 
 :help0
@@ -313,3 +314,8 @@ FOR /F "skip=2 delims=" %%a IN ('wmic path Win32_VideoController get CurrentHori
 set /a RW=%CurrentHorizontalResolution%
 set /a RH=%CurrentVerticalResolution%
 Exit /b
+
+
+:vt
+
+goto start
